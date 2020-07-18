@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('auth')->group(function () {
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    // Route::post('logout', 'LoginController@logout');
+    
     // Route::get('refresh', 'AuthController@refresh');
 
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/user', 'AuthController@user');
-        Route::post('/logout', 'AuthController@logout');
+       
     });
 });
 
@@ -31,3 +34,4 @@ Route::get('users', 'UserController@index');
 Route::get('users/{id}', 'UserController@show');
 
 //isSuperAdmin isStudent
+

@@ -15,17 +15,24 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
+        
     },
     {
         path: "/login",
         name: "login",
         component: Login,
+        meta: {
+            guest: true,
+        }
         
     },
     {
         path: "/register",
         name: "Register",
         component: Register,
+        meta: {
+            guest: true,
+        }
        
     },
     {
@@ -41,6 +48,10 @@ const routes = [
         path: "/admin/:page",
         name: "admin-pages",
         component: Dashboard,
+        meta: {
+            requiresAuth: true,
+            isAdmin: true
+        }
     },
 
     {
@@ -57,6 +68,10 @@ const routes = [
         path: "/student/:page",
         name: "student-pages",
         component: StudentDashboard,
+        meta: {
+            requiresAuth: true,
+            isStudent: true
+        }
         
     },
 
@@ -74,6 +89,10 @@ const routes = [
         path: "/company/:page",
         name: "company-pages",
         component: CompanyDashboard,
+        meta: {
+            requiresAuth: true,
+             isCompany: true
+        }
        
     }
 ];

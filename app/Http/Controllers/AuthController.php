@@ -7,6 +7,7 @@ use Dotenv\Validator;
 use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -36,7 +37,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        $token = $user->createToken('app token')->accessToken;
+        $token = $user->createToken('token')->accessToken;
 
         return response()->json(['status' => 'success', 'token' => $token, 'user' => $user], 200);
     }
@@ -60,7 +61,7 @@ class AuthController extends Controller
             ], 422);
         }
 
-    
+
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
@@ -93,13 +94,18 @@ class AuthController extends Controller
 
 
 
-    public function logout (Request $request) {
-        $token = $request->user()->token();
-        $token->revoke();
-        $response = ['message' => 'You have been successfully logged out!'];
-        return response($response, 200);
+    public function logout()
+    {
+        if (Auth::check()) {
+            DB::table('oauth_access_tokens')
+                ->where('user_id', Auth::user()->id)
+                ->update([
+                    'revoked' => true
+                ]);
+            $response = ['message' => 'You have been successfully logged out!'];
+            return response($response, 200);
+        }
+        $response = ['message' => 'Unauthorised'];
+        return response($response, 401);
     }
-
-
-
 }
