@@ -178,8 +178,7 @@ export default {
     },
     beforeMount() {
         let user = JSON.parse(localStorage.getItem("user"));
-        this.user_authoriy = user.authority_id;
-        this.user_name = user.user_name;
+        this.user_name = user.username;
     },
     methods: {
         logout() {

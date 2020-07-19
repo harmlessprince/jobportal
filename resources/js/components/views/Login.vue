@@ -15,7 +15,7 @@
 
             <form autocomplete="off" @submit.prevent="login">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" v-model="email" name="email" id="email" />
+                    <input type="username" class="form-control" placeholder="Email" v-model="username" name="username" id="email" />
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -89,7 +89,7 @@ import {
 export default {
     data() {
         return {
-            email: "aliza.zulauf@example.com" || "bgoodwin@example.net" || "iwehner@example.com",
+            username: "aliza.zulauf@example.com" || "bgoodwin@example.net" || "iwehner@example.com",
             password: "password",
             has_error: false,
             error: "null",
@@ -110,11 +110,11 @@ export default {
     methods: {
         login() {
             if (this.password.length > 0) {
-                const email = this.email;
+                const username = this.username;
                 const password = this.password;
                 // const { email, password } = this;
                 LoginRoute({
-                        email,
+                        username,
                         password
                     })
                     .then(resp => {

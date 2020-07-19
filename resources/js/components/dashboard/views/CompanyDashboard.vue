@@ -1,12 +1,10 @@
-
 <template>
 <div>
-    <!-- <Sidebar @nextComp="setComponent" /> -->
     <!-- Main Sidebar Container -->
-     <Sidebar @changeComponent="setComponent" />
-     <Topbar :authenticated='authenticated' />
-    <component :is="activeComponent"></component>
+    <Sidebar @changeComponent="setComponent" />
+    <Topbar :authenticated='authenticated' />
 
+    <component :is="activeComponent"></component>
     <Footer />
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -20,7 +18,6 @@
 import Topbar from "../Topbar";
 import Sidebar from "../sidebarcomponents/Sidebar";
 import Footer from "../../Footer";
-
 import Jobs from "../company/Jobs";
 import RecievedApplications from "../company/RecievedApplications";
 
@@ -36,7 +33,7 @@ export default {
     data() {
         return {
             activeComponent: null,
-             authenticated: localStorage.getItem("user") != null,
+            authenticated: localStorage.getItem("user") != null,
         };
     },
     beforeUpdate() {

@@ -1,4 +1,4 @@
-import { reject } from "lodash";
+// import { reject } from "lodash";
 
 // Exported in a shared file
 export const LoginRoute = payload =>
@@ -13,6 +13,7 @@ export const LoginRoute = payload =>
                 resolve(resp);
             })
             .catch(errors => {
+
                 console.log("ERROR::", errors.response.data);
                 reject(errors);
             });
@@ -24,15 +25,15 @@ export const RegisterUser = payload =>
         axios({ url: "auth/register", data: payload, method: "POST" })
             .then(resp => {
                 console.log(resp.data);
-                const token = resp.data.token;
-                const user = resp.data.user;
-                localStorage.setItem("token", token); // store the token in localstorage
-                localStorage.setItem("user", JSON.stringify(user)); // store the token in localstorage
+                // const token = resp.data.token;
+                // const user = resp.data.user;
+                // localStorage.setItem("token", token); // store the token in localstorage
+                // localStorage.setItem("user", JSON.stringify(user)); // store the token in localstorage
                 resolve(resp);
             })
             .catch(errors => {
-                console.log("ERROR::", errors.response.data);
-                // localStorage.removeItem("user-token"); // if the request fails, remove any possible user token if possible
+                console.log("ERROR::", errors.response.data.message);
+                localStorage.removeItem("token"); // if the request fails, remove any possible user token if possible
                 reject(errors);
             });
     });

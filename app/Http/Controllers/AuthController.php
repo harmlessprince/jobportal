@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    //
-
+    
     public function register(Request $request)
     {
         $validator = validator($request->all(), [
+            'username' => 'required|string',
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|confirmed',
         ]);
@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'failed',
+                'status' => 'fail',
                 'errors' => $validator->errors()->all()
             ], 422);
         }
@@ -32,7 +32,7 @@ class AuthController extends Controller
         //    $user = new User;
 
         $user = User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
@@ -47,10 +47,10 @@ class AuthController extends Controller
 
         // dd($request->all());
 
-        $credentials = $request->only(['email', 'password']);
+        $credentials = $request->only(['username', 'password']);
 
         $validator = validator($credentials, [
-            'email' => 'required|string|email|max:255',
+            'username' => 'required|string|max:255',
             'password' => 'required|string|min:6',
         ]);
 
@@ -62,7 +62,7 @@ class AuthController extends Controller
         }
 
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->username)->orWhere('username', $request->username)->first();
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {

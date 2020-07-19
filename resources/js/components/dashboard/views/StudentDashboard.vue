@@ -61,7 +61,6 @@ export default {
     },
     methods: {
         setComponent(value) {
-            const pages = ['find-a-job', 'job-alert', 'job-applications', 'jobs-for-you', 'saved-jobs','upload'];
            
              switch (value) {
                 case "find-a-job":
