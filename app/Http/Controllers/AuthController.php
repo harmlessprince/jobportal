@@ -81,7 +81,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => 'User does not exist, Please Register',
+            'message' => 'Username/Email is Incorrect',
         ], 422);
     }
 
