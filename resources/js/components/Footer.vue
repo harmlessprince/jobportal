@@ -5,7 +5,7 @@
             <b>Version</b> 3.0.5
         </div>
         <strong>Copyright &copy; 2020
-            <a href="http://adminlte.io">Teeque</a>.</strong>
+            <a href="#">Teeque</a>.</strong>
         All rights reserved.
     </footer>
 </div>
