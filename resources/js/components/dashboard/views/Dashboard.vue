@@ -61,7 +61,7 @@ export default {
                         params: {
                             page: "students"
                         }
-                    });
+                    }).catch(()=>{});
                     break;
                 case "company":
                     this.activeComponent = Company;
@@ -70,7 +70,7 @@ export default {
                         params: {
                             page: "companies"
                         }
-                    });
+                    }).catch(()=>{});
                     break;
                 case "jobs":
                     this.activeComponent = Jobs;
@@ -79,13 +79,13 @@ export default {
                         params: {
                             page: "jobs"
                         }
-                    });
+                    }).catch(()=>{});
                     break;
                 default:
                     this.activeComponent = Main;
                     this.$router.push({
                         name: "admin-dashboard"
-                    });
+                    }).catch(()=>{});
                     break;
             }
         },

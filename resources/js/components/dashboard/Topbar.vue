@@ -187,13 +187,12 @@ export default {
             let token = localStorage.getItem('token')
             // console.log(token);
             LogOut({
-                token,
-                user
+                
             }).then(resp => {
                 document.location.href = "/login";
                
             }).catch(errors => {
-                console.log("ERROR::", errors.response.data);
+                console.log("ERROR::", errors.response);
             })
         }
     }
@@ -201,3 +200,7 @@ export default {
 </script>
 
 <style lang="stylus"></style>
+
+
+
+

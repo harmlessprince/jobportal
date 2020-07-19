@@ -21,9 +21,14 @@ try {
 
 window.axios = require('axios');
 
+
+
+let token = localStorage.getItem('token');
+
+
 window.axios.defaults.headers.common = { 
     'X-Requested-With' : 'XMLHttpRequest',
-    'Authorization' : 'Bearer ' + localStorage.getItem('token')
+    // 'Authorization' : 'Bearer ' + token
 };
 
 // window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');

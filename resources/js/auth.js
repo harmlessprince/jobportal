@@ -7,13 +7,12 @@ export const LoginRoute = payload =>
             .then(resp => {
                 const token = resp.data.token;
                 const user = resp.data.user;
-               
+
                 localStorage.setItem("token", token); // store the token in localstorage
                 localStorage.setItem("user", JSON.stringify(user)); // store the user in localstorage
                 resolve(resp);
             })
             .catch(errors => {
-
                 console.log("ERROR::", errors.response.data);
                 reject(errors);
             });
@@ -37,13 +36,23 @@ export const RegisterUser = payload =>
                 reject(errors);
             });
     });
-export const LogOut = (payload) => new Promise((resolve, reject)=>{
-    axios({ url: "auth/logout", data: payload, method: "POST" })
+export const LogOut = payload =>
+    new Promise((resolve, reject) => {
+        let token = localStorage.getItem("token");
+        axios({
+            url: "auth/logout",
+            data: payload,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            method: "POST"
+        })
             .then(resp => {
                 console.log(resp.data);
                 // const token = resp.data.token;
                 // const user = resp.data.user;
                 localStorage.removeItem("token"); // store the token in localstorage
+                localStorage.removeItem("Token");
                 localStorage.removeItem("user"); // store the token in localstorage
                 resolve(resp);
             })
@@ -52,6 +61,4 @@ export const LogOut = (payload) => new Promise((resolve, reject)=>{
                 // localStorage.removeItem("user-token"); // if the request fails, remove any possible user token if possible
                 reject(errors);
             });
-});
-
-
+    });

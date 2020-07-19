@@ -123,12 +123,12 @@ export default {
                         if (localStorage.getItem("token") != null) {
                             this.$emit("authenticated", true);
                             if (this.$route.params.nextUrl != null) {
-                                this.$router.push(this.$route.params.nextUrl);
+                                this.$router.push(this.$route.params.nextUrl).catch(()=>{});
                             } else {
                                 this.$router.push(
                                     // authority == 1 ? "admin" : "dashboard"
                                     this.SetNextURL(authority)
-                                );
+                                ).catch(()=>{});
                             }
                         }
                     })
