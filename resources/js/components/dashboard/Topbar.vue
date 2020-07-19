@@ -189,7 +189,7 @@ export default {
             LogOut({
                 
             }).then(resp => {
-                document.location.href = "/login";
+              this.$router.push({name: 'login'});
                
             }).catch(errors => {
                 console.log("ERROR::", errors.response);

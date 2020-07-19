@@ -39,13 +39,19 @@
 
         </div>
     </div>
-    <!-- REQUIRED SCRIPTS -->
     <script src="{{ mix('/js/bootstrap.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
+    <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src={{asset("assets/plugins/jquery/jquery.min.js")}}></script>
     <!-- jQuery UI 1.11.4 -->
     <script src={{asset("assets/plugins/jquery-ui/jquery-ui.min.js")}}></script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    {{-- <script src="  https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> --}}
+   
+
     <!-- Bootstrap 4 -->
     <script src={{asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js")}}></script>
     <script src={{asset("assets/plugins/moment/moment.min.js")}}></script>
@@ -54,8 +60,7 @@
     <script src={{asset("assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js")}}></script>
 
     <script src={{asset("assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
-    <!-- AdminLTE App -->
-    <script src={{asset("assets/dist/js/adminlte.js")}}></script>
+
 
     <!-- DataTables -->
     <script src={{asset("assets/plugins/datatables/jquery.dataTables.min.js")}}></script>
@@ -63,7 +68,10 @@
     <script src={{asset("assets/plugins/datatables-responsive/js/dataTables.responsive.min.js")}}></script>
     <script src={{asset("assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js")}}></script>
 
-
+    <!-- AdminLTE App -->
+    <script src={{asset("assets/dist/js/adminlte.js")}}></script>
+    
+    
 </body>
 
 </html>
