@@ -21,103 +21,9 @@
         </div>
 
         <!-- ------------------------------Admin Menu Starts here------------------------------->
-        <nav class="mt-2" v-if="(user_authoriy == 2)">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open" @click="changeComponent('main')">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-header">ADMIN</li>
-                <li class="nav-item has-treeview">
-                    <a class="nav-link" @click="changeComponent('student')">
-                        <i class="nav-icon far fa-user"></i>
-                        <p>
-                            Student
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item" @click="changeComponent('approvedStudent')">
-                            <a class="nav-link">
-                                <i class="fas fa-user-shield nav-icon"></i>
-                                <p>Approved Student</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" @click="changeComponent('registerStudent')">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-user-check nav-icon"></i>
-                                <p>Registered Student</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" @click="changeComponent('unregisterStudent')">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-user-slash nav-icon"></i>
-                                <p>Unregistered Student</p>
-                            </a>
-                        </li>
-                        <li class="nav-item" @click="changeComponent('employedStudent')">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-user-tie nav-icon"></i>
-                                <p>Employed Student</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a class="nav-link" @click="changeComponent('company')">
-                        <i class="nav-icon fas fa-synagogue"></i>
-                        <p>
-                            Company
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-check-double"></i>
-                                <p>Approved Company</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-times"></i>
-                                <p>Unapproved Company</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a class="nav-link" @click="changeComponent('jobs')">
-                        <i class="nav-icon fas fa-hands"></i>
-                        <p>
-                            Jobs
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-handshake"></i>
-                                <p>Active Jobs</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-handshake-slash"></i>
-                                <p>Inactive Jobs</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-            </ul>
-        </nav>
+        <AdminSidebar @sendComponent="changeComponent" :AdminPages="admin" :user_authoriy="user_authoriy" />
+
         <!-- ------------------------------Admin Menu Emns here---------------------------------->
         <!---------------------------------------------------------------------------------------->
         <!---------------------------------------------------------------------------------------->
@@ -246,12 +152,20 @@
 </template>
 
 <script>
+import AdminSidebar from './AdminSidebar'
 export default {
+    components: {
+        AdminSidebar
+    },
     data() {
         return {
             user: null,
             user_authoriy: "",
-            user_name: null
+            user_name: null,
+            admin: Array('main', 'student', 'approvedStudent', 'registerStudent', 'employedStudent', 'company', 'jobs'),
+            student: ['main', 'find-a-job', 'job-alert', 'job-applications', 'jobs-for-you', 'saved-jobs', 'upload'],
+            company: ['managed-jobs', 'recieved-applications'],
+
         };
     },
 
@@ -263,14 +177,10 @@ export default {
     },
     methods: {
         changeComponent(alias) {
-            const pages = {
-                admin: ['main', 'student', 'approvedStudent', 'registerStudent', 'employedStudent', 'company', 'jobs'],
-                student: ['main', 'find-a-job', 'job-alert', 'job-applications', 'jobs-for-you', 'saved-jobs', 'upload'],
-                company: ['managed-jobs', 'recieved-applications'],
-            }
-            let adminPages = (pages["admin"]);
-            let studentPages = (pages["student"]);
-            let companyPages = (pages["company"]);
+
+            let adminPages = this.admin;
+            let studentPages = this.student;
+            let companyPages = this.company;
 
             if (this.user_authoriy == 1) {
                 if (studentPages.includes(alias)) {

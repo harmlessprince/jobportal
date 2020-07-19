@@ -118,7 +118,7 @@
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="/assets/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image" />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{user_name}}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
@@ -173,14 +173,18 @@ export default {
     },
     data() {
         return {
-
+            user_name: null
         };
+    },
+    beforeMount() {
+        let user = JSON.parse(localStorage.getItem("user"));
+        this.user_authoriy = user.authority_id;
+        this.user_name = user.user_name;
     },
     methods: {
         logout() {
             let user = JSON.parse(localStorage.getItem("user"));
-            this.user_authoriy = user.authority_id;
-            this.user_name = user.user_name;
+            
             let token = localStorage.getItem('token')
             // console.log(token);
             LogOut({
@@ -188,7 +192,7 @@ export default {
                 user
             }).then(resp => {
                 document.location.href = "/login";
-                console.log(resp.data)
+               
             }).catch(errors => {
                 console.log("ERROR::", errors.response.data);
             })
