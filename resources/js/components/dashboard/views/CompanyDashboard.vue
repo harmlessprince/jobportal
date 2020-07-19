@@ -18,7 +18,7 @@
 
 <script>
 import Topbar from "../Topbar";
-import Sidebar from "../Sidebar";
+import Sidebar from "../sidebarcomponents/Sidebar";
 import Footer from "../../Footer";
 
 import Jobs from "../company/Jobs";
