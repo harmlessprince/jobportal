@@ -16,7 +16,8 @@
         "laravel/passport": "^9.3",
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "fzaninotto/faker": "^1.9.1"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "dev-master",
