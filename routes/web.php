@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\URL;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+URL::forceSchema('https');
 
 Route::get('/{any?}', function (){
     return view('master');
