@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedInteger('authority_id')->comment('The user authority on the app');
-            $table->string('user_name');
+            $table->string('username');
             $table->boolean('approved')->default(false)->comment('This explains if user account is approved or not');
             $table->boolean('status')->default(false)->comment('This explains if user account is active or inactive');
             $table->string('password')->nullable();
