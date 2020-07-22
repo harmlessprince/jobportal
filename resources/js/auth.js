@@ -52,7 +52,7 @@ export const LogOut = payload =>
                 // const token = resp.data.token;
                 // const user = resp.data.user;
                 localStorage.removeItem("token"); // store the token in localstorage
-                localStorage.removeItem("Token");
+                // localStorage.removeItem("Token");
                 localStorage.removeItem("user"); // store the token in localstorage
                 resolve(resp);
             })

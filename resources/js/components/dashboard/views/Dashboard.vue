@@ -5,7 +5,7 @@
     <Sidebar @changeComponent="setComponent" />
      <Topbar :authenticated='authenticated' />
     <component :is="activeComponent"></component>
-
+    <!-- <navigation :item = 'item'/> -->
     <Footer />
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -24,6 +24,7 @@ import Main from "../admin/Main";
 import Students from "../admin/Students";
 import Jobs from "../admin/Jobs";
 import Company from "../admin/Company";
+import navigation from "../../menu/dropdown"
 export default {
     // name: "Dashboard",
     components: {
@@ -33,12 +34,14 @@ export default {
         Students,
         Main,
         Jobs,
-        Company
+        Company,
+        navigation
     },
     data() {
         return {
             activeComponent: null,
              authenticated: localStorage.getItem("user") != null,
+             item:null
         };
     },
     beforeUpdate() {
